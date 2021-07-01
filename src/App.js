@@ -51,7 +51,7 @@ class App extends Component {
         toast.success("got potential buyers")
       })
       .catch(err => {
-        toast.error(err.code)
+        toast.error(err.message)
       })
   }
 
@@ -90,7 +90,7 @@ class App extends Component {
         toast.success("price updated");
       })
       .catch((err) => {
-        toast.error(err.code)
+        toast.error(err.message)
       })
     // setState with response -> vehiclesToDisplay
   }
@@ -112,7 +112,7 @@ class App extends Component {
         toast.success(`${newCar.make} ${newCar.model} successfully added`)
       })
       .catch((err) => {
-        toast.error(err.code)
+        toast.error(err.message)
       })
     // setState with response -> vehiclesToDisplay
   }
@@ -127,27 +127,27 @@ class App extends Component {
     //axios (POST)
     // setState with response -> buyersToDisplay
     axios.post('https://joes-autos.herokuapp.com/api/buyers', newBuyer)
-    .then( response  => {
-      console.log(response.data)
-      this.setState({ buyersToDisplay: response.data.buyers})
-      toast.success(`${newBuyer.name} successfully added`)
-    })
-    .catch( err => {
-      toast.error(err.code)
-    })
+      .then(response => {
+        console.log(response.data)
+        this.setState({ buyersToDisplay: response.data.buyers })
+        toast.success(`${newBuyer.name} successfully added`)
+      })
+      .catch(err => {
+        toast.error(err.message)
+      })
   }
 
   deleteBuyer(id) {
     // axios (DELETE)
     //setState with response -> buyersToDisplay
     axios.delete(`https://joes-autos.herokuapp.com/api/buyers/${id}`)
-    .then( response => {
-      this.setState({buyersToDisplay: response.data.buyers});
-      toast.success('buyer successfully deleted')
-    })
-    .catch( err => {
-      toast.error(err.code);
-    })
+      .then(response => {
+        this.setState({ buyersToDisplay: response.data.buyers });
+        toast.success('buyer successfully deleted')
+      })
+      .catch(err => {
+        toast.error(err.message);
+      })
   }
 
   nameSearch() {
