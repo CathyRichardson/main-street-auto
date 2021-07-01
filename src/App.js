@@ -73,6 +73,14 @@ class App extends Component {
 
     // axios (GET)
     // setState with response -> vehiclesToDisplay
+    axios.get(`https://joes-autos.herokuapp.com/api/vehicles?make=${make}`)
+    .then( res => {
+      this.setState({vehiclesToDisplay: res.data})
+      toast.success(`successfully filtered by ${make}`)
+    })
+    .catch( err => {
+      toast.err(err.message)
+    })
   }
 
   filterByColor() {
@@ -80,6 +88,15 @@ class App extends Component {
 
     // axios (GET)
     // setState with response -> vehiclesToDisplay
+
+    axios.get(`https://joes-autos.herokuapp.com/api/vehicles?color=${color}`)
+    .then( res => {
+      this.setState({vehiclesToDisplay: res.data})
+      toast.success(`successfully filtered by ${color}`)
+    })
+    .catch( err => {
+      toast.err(err.message)
+    })
   }
 
   updatePrice(priceChange, id) {
